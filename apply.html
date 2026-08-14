@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お申込みフォーム | 高齢者運動指導士®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --mist:#F3FAFD;
+    --pale-sky:#E3F3FA;
+    --sky:#9AD3E8;
+    --deep-sky:#2E86AB;
+    --deep-sky-dark:#1F6788;
+    --ink:#2E3A44;
+    --sub-ink:#647685;
+    --coral:#F2A488;
+    --coral-dark:#E28564;
+    --line:#CFE7F2;
+    --error:#D9534F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Zen Kaku Gothic New', -apple-system, 'Hiragino Kaku Gothic ProN', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, var(--pale-sky) 0%, transparent 60%),
+      var(--white);
+    line-height:1.85;
+    letter-spacing:0.02em;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  h1,h2,h3,.mincho{font-family:'Shippori Mincho B1', serif;}
+  a{color:inherit;}
+  .wrap{max-width:720px; margin:0 auto; padding:0 24px;}
+
+  header{
+    background:rgba(255,255,255,0.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px; max-width:1080px;
+  }
+  .logo{font-family:'Shippori Mincho B1', serif; font-size:16px; font-weight:600; color:var(--deep-sky-dark); letter-spacing:0.08em;}
+  .logo span{font-size:11px; display:block; letter-spacing:0.15em; color:var(--sub-ink); font-family:'Zen Kaku Gothic New',sans-serif; margin-top:2px;}
+  .back-link{font-size:13px; font-weight:700; color:var(--deep-sky-dark); display:flex; align-items:center; gap:6px;}
+  .back-link::before{content:"←"; font-size:14px;}
+
+  main{padding:56px 0 90px;}
+
+  .page-head{text-align:center; margin-bottom:40px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12.5px; letter-spacing:0.28em; font-weight:700;
+    color:var(--deep-sky-dark); margin-bottom:14px;
+  }
+  .eyebrow::before{content:""; width:26px; height:1px; background:var(--deep-sky-dark);}
+  .page-head h1{font-size:clamp(24px,4vw,32px); font-weight:700; line-height:1.6; margin-bottom:12px;}
+  .page-head p{color:var(--sub-ink); font-size:14.5px;}
+
+  .info-panel{margin-bottom:32px;}
+  .info-card{
+    background:var(--white); border:1px solid var(--line); border-radius:20px;
+    padding:28px 32px; margin-bottom:16px;
+  }
+  @media (max-width:600px){ .info-card{padding:22px 20px;} }
+  .info-card h2{
+    font-size:14px; font-weight:700; color:var(--deep-sky-dark);
+    letter-spacing:0.08em; margin-bottom:18px; display:flex; align-items:center; gap:8px;
+  }
+  .flow-steps{list-style:none; counter-reset:flow; display:flex; flex-direction:column; gap:14px;}
+  .flow-steps li{
+    counter-increment:flow; position:relative; padding-left:34px;
+    font-size:13.5px; color:var(--ink); line-height:1.8;
+  }
+  .flow-steps li::before{
+    content:counter(flow); position:absolute; left:0; top:1px;
+    width:22px; height:22px; border-radius:50%; background:var(--pale-sky); color:var(--deep-sky-dark);
+    font-size:11.5px; font-weight:700; display:flex; align-items:center; justify-content:center;
+  }
+  .flow-steps li strong{display:block; font-weight:700; margin-bottom:2px; color:var(--ink);}
+  .flow-steps li span{color:var(--sub-ink);}
+
+  .notice-card{
+    background:#FCEEE8; border:1px solid #F2CBB9; border-radius:20px;
+    padding:24px 28px; font-size:13px; color:#8A4A32; line-height:1.9;
+  }
+  @media (max-width:600px){ .notice-card{padding:20px;} }
+  .notice-card .notice-title{
+    font-weight:700; font-size:13px; margin-bottom:10px; color:var(--coral-dark);
+    display:flex; align-items:center; gap:6px;
+  }
+  .notice-card p{margin-bottom:8px;}
+  .notice-card p:last-child{margin-bottom:0;}
+
+  form{
+    background:var(--white); border:1px solid var(--line); border-radius:24px;
+    padding:40px; box-shadow:0 30px 60px -35px rgba(46,134,171,0.3);
+  }
+  @media (max-width:600px){ form{padding:28px 20px;} }
+
+  fieldset{border:none; margin:0 0 32px; padding:0;}
+  fieldset:last-of-type{margin-bottom:0;}
+  legend{
+    font-size:13px; font-weight:700; color:var(--deep-sky-dark);
+    letter-spacing:0.1em; margin-bottom:18px; padding-bottom:10px;
+    border-bottom:1px solid var(--line); width:100%;
+  }
+
+  .field{margin-bottom:20px;}
+  .field:last-child{margin-bottom:0;}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:600px){ .field-row{grid-template-columns:1fr;} }
+
+  label{
+    display:block; font-size:13.5px; font-weight:700; color:var(--ink);
+    margin-bottom:8px;
+  }
+  label .req{
+    color:var(--coral-dark); font-size:11px; font-weight:700;
+    background:#FCEEE8; padding:2px 8px; border-radius:999px; margin-left:8px;
+  }
+  label .opt{
+    color:var(--sub-ink); font-size:11px; font-weight:400;
+    background:var(--mist); padding:2px 8px; border-radius:999px; margin-left:8px;
+  }
+
+  input[type="text"], input[type="email"], input[type="tel"], select, textarea{
+    width:100%; font-family:inherit; font-size:14.5px; color:var(--ink);
+    background:var(--mist); border:1.5px solid var(--line); border-radius:12px;
+    padding:13px 16px; transition:border-color .2s ease, background .2s ease;
+  }
+  input:focus, select:focus, textarea:focus{
+    outline:none; border-color:var(--deep-sky); background:var(--white);
+  }
+  textarea{resize:vertical; min-height:90px; line-height:1.7;}
+  select{appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23647685'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-size:18px; padding-right:40px;}
+
+  .radio-group{display:flex; flex-wrap:wrap; gap:10px;}
+  .radio-card{
+    flex:1 1 200px; position:relative; border:1.5px solid var(--line); border-radius:14px;
+    padding:14px 16px; cursor:pointer; transition:all .2s ease; background:var(--mist);
+  }
+  .radio-card input{position:absolute; opacity:0; inset:0; cursor:pointer;}
+  .radio-card .rc-title{font-size:14px; font-weight:700; color:var(--ink);}
+  .radio-card .rc-desc{font-size:12px; color:var(--sub-ink); margin-top:3px;}
+  .radio-card:has(input:checked){
+    border-color:var(--deep-sky); background:var(--pale-sky);
+    box-shadow:0 0 0 3px rgba(46,134,171,0.12);
+  }
+
+  .checkbox-row{
+    display:flex; align-items:flex-start; gap:10px; background:var(--mist);
+    border:1.5px solid var(--line); border-radius:12px; padding:16px;
+  }
+  .checkbox-row input{margin-top:3px; flex-shrink:0; width:16px; height:16px; accent-color:var(--deep-sky);}
+  .checkbox-row label{margin:0; font-weight:400; font-size:13px; color:var(--ink); line-height:1.8;}
+  .checkbox-row a{color:var(--deep-sky-dark); font-weight:700; border-bottom:1px solid var(--sky);}
+
+  .error-text{color:var(--error); font-size:12px; margin-top:6px; display:none;}
+  .field.invalid input, .field.invalid select, .field.invalid textarea{border-color:var(--error); background:#FDF3F3;}
+  .field.invalid .error-text{display:block;}
+
+  .submit-row{margin-top:36px; text-align:center;}
+  .btn-submit{
+    background:var(--coral); color:#fff; font-weight:700; font-size:15px;
+    padding:17px 56px; border-radius:999px; border:none; cursor:pointer;
+    box-shadow:0 14px 26px -10px rgba(226,133,100,0.55);
+    transition:all .25s ease; font-family:inherit;
+  }
+  .btn-submit:hover{background:var(--coral-dark); transform:translateY(-2px);}
+  .btn-submit:disabled{opacity:0.6; cursor:not-allowed; transform:none;}
+  .submit-note{margin-top:16px; font-size:12px; color:var(--sub-ink);}
+
+  .form-status{
+    display:none; margin-top:20px; padding:14px 18px; border-radius:12px;
+    font-size:13.5px; text-align:center;
+  }
+  .form-status.error{display:block; background:#FDF3F3; color:var(--error); border:1px solid #F0C6C4;}
+
+  /* Success state */
+  .success-panel{display:none; text-align:center; padding:20px 0 10px;}
+  .success-panel.show{display:block;}
+  form.hide{display:none;}
+  .success-icon{
+    width:64px; height:64px; border-radius:50%; margin:0 auto 20px;
+    background:linear-gradient(160deg, var(--deep-sky), var(--sky));
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:28px;
+  }
+  .success-panel h2{font-size:20px; font-weight:700; margin-bottom:12px;}
+  .success-panel p{color:var(--sub-ink); font-size:14px; max-width:400px; margin:0 auto;}
+
+  footer{
+    background:var(--ink); color:#B9C7D2; padding:32px 0; text-align:center; font-size:12px;
+  }
+  footer .fname{font-family:'Shippori Mincho B1',serif; color:#fff; font-size:13px; margin-bottom:8px; letter-spacing:0.1em;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">高齢者運動指導士<span>SENIOR EXERCISE INSTRUCTOR QUALIFICATION</span></div>
+    <a href="index.html" class="back-link">LPへ戻る</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <div class="eyebrow">APPLICATION FORM</div>
+      <h1>受講のお申込み</h1>
+      <p>必要事項をご入力のうえ、送信してください。<br class="hide-mobile">担当より日程・お支払いのご案内をメールにてお送りいたします。</p>
+    </div>
+
+    <div class="info-panel">
+      <div class="info-card">
+        <h2>お申込みの流れ</h2>
+        <ol class="flow-steps">
+          <li><strong>仮受付のご連絡</strong><span>お申込みの受付け後、仮受付完了のお知らせと講習費のお支払い方法をメールにてご連絡いたします。</span></li>
+          <li><strong>お支払い</strong><span>メールに記載のクレジットカード決済、または金融機関口座への振込にて、期日までにお支払いください。</span></li>
+          <li><strong>受講票のご案内</strong><span>講習費のご入金をもって申込み完了とさせていただき、開催日の1週間前に「受講票」をメールにてご連絡いたします。</span></li>
+          <li><strong>当日</strong><span>テキストデータは、当日の講習中にダウンロードしていただきます。</span></li>
+        </ol>
+      </div>
+      <div class="notice-card">
+        <div class="notice-title">ご注意事項</div>
+        <p>受講者数には定員がございますので、お申込みは先着順とさせていただきます。期日までにご入金が確認できない場合は、キャンセルとさせていただきます。</p>
+        <p>なお、一旦ご入金いただいた講習費は、理由の如何を問わずご返金いたしかねますので、あらかじめご了承のうえお申込みください。</p>
+      </div>
+    </div>
+
+    <form id="applyForm" novalidate>
+
+      <fieldset>
+        <legend>お申込み内容</legend>
+        <div class="field">
+          <label>コース</label>
+          <div class="radio-group">
+            <label class="radio-card">
+              <input type="radio" name="course" value="Basic" checked hidden>
+              <div class="rc-title">Basicコース</div>
+              <div class="rc-desc">¥27,500（税込）はじめての方向け</div>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>お申込者情報</legend>
+
+        <div class="field-row">
+          <div class="field" id="field-name">
+            <label for="name">お名前 <span class="req">必須</span></label>
+            <input type="text" id="name" name="name" placeholder="例）山田 花子" autocomplete="name">
+            <div class="error-text">お名前をご入力ください。</div>
+          </div>
+          <div class="field" id="field-kana">
+            <label for="kana">フリガナ <span class="req">必須</span></label>
+            <input type="text" id="kana" name="kana" placeholder="例）ヤマダ ハナコ">
+            <div class="error-text">フリガナをご入力ください。</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field" id="field-email">
+            <label for="email">メールアドレス <span class="req">必須</span></label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com" autocomplete="email">
+            <div class="error-text">正しいメールアドレスをご入力ください。</div>
+          </div>
+          <div class="field" id="field-tel">
+            <label for="tel">電話番号 <span class="req">必須</span></label>
+            <input type="tel" id="tel" name="tel" placeholder="090-1234-5678" autocomplete="tel">
+            <div class="error-text">電話番号をご入力ください。</div>
+          </div>
+        </div>
+
+        <div class="field" id="field-pref">
+          <label for="pref">お住まいの都道府県 <span class="opt">任意</span></label>
+          <select id="pref" name="pref">
+            <option value="">選択してください</option>
+            <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option>
+            <option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option>
+            <option>新潟県</option><option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option><option>岐阜県</option>
+            <option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option>
+            <option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option>
+            <option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option><option>佐賀県</option><option>長崎県</option>
+            <option>熊本県</option><option>大分県</option><option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option>
+          </select>
+        </div>
+
+        <div class="field" id="field-job">
+          <label for="job">現在のご職業・活動 <span class="opt">任意</span></label>
+          <input type="text" id="job" name="job" placeholder="例）パーソナルトレーナー、介護施設スタッフ など">
+        </div>
+
+        <div class="field" id="field-motive">
+          <label for="motive">受講の目的・動機 <span class="opt">任意</span></label>
+          <textarea id="motive" name="motive" placeholder="ご記入いただいた内容は、当日のクラス編成やご案内の参考にさせていただきます。"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>確認事項</legend>
+        <div class="checkbox-row">
+          <input type="checkbox" id="agree" name="agree">
+          <label for="agree">上記「お申込みの流れ」「ご注意事項」の内容、および受講当日の体調管理は自己責任にて行うものとし、既往症・持病・怪我等により当日の実技受講中に生じた事故・体調不良について主催者は責任を負いかねることに、同意します。<span class="req">必須</span></label>
+        </div>
+        <div class="error-text" id="agree-error" style="margin-top:8px;">同意事項へのチェックをお願いいたします。</div>
+      </fieldset>
+
+      <div class="form-status" id="formStatus"></div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn-submit" id="submitBtn">この内容で送信する</button>
+        <div class="submit-note">送信後、入力いただいたメールアドレス宛に受付完了メールをお送りします。</div>
+      </div>
+    </form>
+
+    <div class="success-panel" id="successPanel">
+      <div class="success-icon">✓</div>
+      <h2>お申込みありがとうございました</h2>
+      <p>内容を受け付けました。担当より日程・お支払い方法のご案内を、1〜2営業日以内にメールにてお送りいたします。</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fname">高齢者運動指導士®</div>
+    日本高齢者運動機能向上研究会
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  // 送信先: Google Apps Script のウェブアプリURLに置き換えてください
+  // 例: https://script.google.com/macros/s/XXXXXXXXXXXX/exec
+  // ============================================================
+  const ENDPOINT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+
+  const form = document.getElementById('applyForm');
+  const statusBox = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function setInvalid(fieldId, invalid){
+    const el = document.getElementById(fieldId);
+    if (!el) return;
+    el.classList.toggle('invalid', invalid);
+  }
+
+  function validate(data){
+    let ok = true;
+    setInvalid('field-name', !data.name.trim());
+    if (!data.name.trim()) ok = false;
+
+    setInvalid('field-kana', !data.kana.trim());
+    if (!data.kana.trim()) ok = false;
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim());
+    setInvalid('field-email', !emailOk);
+    if (!emailOk) ok = false;
+
+    setInvalid('field-tel', !data.tel.trim());
+    if (!data.tel.trim()) ok = false;
+
+    document.getElementById('agree-error').style.display = data.agree ? 'none' : 'block';
+    if (!data.agree) ok = false;
+
+    return ok;
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    statusBox.className = 'form-status';
+    statusBox.textContent = '';
+
+    const fd = new FormData(form);
+    const data = {
+      course: fd.get('course') || '',
+      name: fd.get('name') || '',
+      kana: fd.get('kana') || '',
+      email: fd.get('email') || '',
+      tel: fd.get('tel') || '',
+      pref: fd.get('pref') || '',
+      job: fd.get('job') || '',
+      motive: fd.get('motive') || '',
+      agree: fd.get('agree') === 'on'
+    };
+
+    if (!validate(data)) {
+      statusBox.classList.add('error');
+      statusBox.textContent = '未入力・未確認の項目があります。赤枠の箇所をご確認ください。';
+      statusBox.style.display = 'block';
+      return;
+    }
+
+    if (ENDPOINT_URL.indexOf('PASTE_YOUR') === 0) {
+      // バックエンド未接続時のフォールバック: メールで送る
+      const subject = encodeURIComponent('高齢者運動指導士® 受講申込（' + data.course + '）');
+      const body = encodeURIComponent(
+        'コース: ' + data.course + '\n' +
+        'お名前: ' + data.name + '\n' +
+        'フリガナ: ' + data.kana + '\n' +
+        'メール: ' + data.email + '\n' +
+        '電話番号: ' + data.tel + '\n' +
+        '都道府県: ' + data.pref + '\n' +
+        'ご職業: ' + data.job + '\n' +
+        '動機: ' + data.motive + '\n'
+      );
+      window.location.href = 'mailto:info@strongbonds.co.jp?subject=' + subject + '&body=' + body;
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中…';
+
+    try {
+      await fetch(ENDPOINT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(data)
+      });
+      form.classList.add('hide');
+      document.getElementById('successPanel').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      statusBox.classList.add('error');
+      statusBox.textContent = '送信に失敗しました。お手数ですが、時間をおいて再度お試しいただくか、メールにてご連絡ください。';
+      statusBox.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'この内容で送信する';
+    }
+  });
+</script>
+
+</body>
+</html>
