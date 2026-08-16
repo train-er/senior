@@ -242,11 +242,24 @@
   /* ---------- essence callout ---------- */
   .essence{
     background:var(--pine); border-radius:6px; padding:48px 44px; color:var(--cream-text); margin-top:56px;
-    display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;
     border:1px solid var(--line-dark);
   }
+  .essence-top{display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;}
   .essence h3{font-size:19px; font-weight:700; line-height:1.8; margin-bottom:0;}
   .essence p{font-family:'Zen Kaku Gothic New', sans-serif; font-size:13.5px; color:#CDD4BF; line-height:1.95;}
+  .essence-questions{
+    font-family:'Zen Kaku Gothic New', sans-serif; font-size:13px; color:#CDD4BF; line-height:2.2;
+    margin-top:4px; padding-left:2px;
+  }
+  .essence-punch{
+    margin-top:32px; padding-top:28px; border-top:1px solid var(--line-dark);
+    font-size:clamp(18px,2.2vw,23px); font-weight:900; line-height:1.7;
+  }
+  .essence-punch em{font-style:normal; color:var(--clay);}
+  .essence-punch small{
+    display:block; font-family:'Zen Kaku Gothic New', sans-serif; font-size:13px; font-weight:400;
+    color:#CDD4BF; margin-top:10px; line-height:1.9;
+  }
 
   /* ---------- overview table ---------- */
   .overview-grid{
@@ -305,7 +318,8 @@
     .benefit-row{grid-template-columns:1fr;}
     .practice-row{grid-template-columns:1fr;}
     .overview-grid{grid-template-columns:1fr;}
-    .essence{grid-template-columns:1fr; padding:36px 28px;}
+    .essence-top{grid-template-columns:1fr;}
+    .essence{padding:36px 28px;}
     .chapter-row{grid-template-columns:44px 1fr; column-gap:14px;}
     .chapter-row .ring-icon{width:34px; height:34px;}
     .course-box{flex-direction:column; align-items:flex-start;}
@@ -529,10 +543,16 @@
     </div>
 
     <div class="essence">
-      <div>
-        <h3>「なぜ」から理解する、本質的なカリキュラム。</h3>
+      <div class="essence-top">
+        <div>
+          <h3>「なぜ」から理解し、<br>"本当に使える"へ。</h3>
+        </div>
+        <p>実際の高齢者運動指導の現場で実践され、<strong style="color:#fff;">本当に使える体操・トレーニング・ストレッチを厳選</strong>。表面的な知識だけでなく、なぜフレイル・ロコモティブシンドロームが進行するのか、その本質から理解できるように設計されています。</p>
       </div>
-      <p>なぜフレイル・ロコモティブシンドロームが進行するのか、高齢者にはどのような運動指導が必要なのか。表面的な知識だけでなく、その本質を理解できるように設計されています。</p>
+      <div class="essence-punch">
+        「何をすればいいのか」「どのように指導すればいいのか」「どんな運動を組み合わせればいいのか」——その答えを、すぐに実践できるプログラムとして体系化。<br>
+        <em>資格を取った翌日から、現場で使える。</em>それが、高齢者運動指導士®の最大の強みです。
+      </div>
     </div>
   </div>
 </section>
